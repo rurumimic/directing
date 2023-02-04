@@ -1,3 +1,3 @@
-# Git
+# git
 
 - [subtree](subtree.md)

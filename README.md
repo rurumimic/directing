@@ -1,5 +1,4 @@
 # directing
 
-- [human resource](human-resource/README.md)
-- tool
-  - [git](git/README.md)
+- 🫡 [directing](/README.md) 지휘
+  - 🗿 [human-resource](human-resource/README.md) 인적 자원 관리
