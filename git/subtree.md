@@ -35,6 +35,8 @@ cat .git/config
 
 ```bash
 git subtree add --prefix=hr hr master
+# or
+git checkout --track hr/master -b hr_master
 ```
 
 <details>
@@ -111,7 +113,7 @@ git subtree push --prefix=hr hr master
 ### pull a subtree directory
 
 ```bash
-git subtree pull --prefix=hr hr master
+git subtree pull --prefix=hr hr master --squash
 ```
 
 ---
