@@ -7,6 +7,8 @@
 
 - [Authentication vs. Authorization](auth/README.md)
 - [RBAC vs ABAC](access-control/rbac-vs-abac.md)
+- [OpenFGA](openfga/README.md)
+  - [Concept](openfga/concept.md)
 
 ---
 
@@ -85,4 +87,3 @@ A good example of this is **Google Drive**, where access can be granted either t
   - [ROLE BASED ACCESS CONTROL (RBAC)](https://csrc.nist.gov/CSRC/media/Presentations/Role-Based-Access-Control-(RBAC)-Presentation/images-media/rbac-slides-doe.pdf)
 - ReBAC
   - [Introduction to Authorization and OpenFGA](https://openfga.dev/docs/authorization-and-openfga)
-
