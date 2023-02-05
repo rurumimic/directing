@@ -7,6 +7,8 @@
 
 - [Authentication vs. Authorization](auth/README.md)
 - [RBAC vs ABAC](access-control/rbac-vs-abac.md)
+- [OpenFGA](openfga/README.md)
+  - [Concept](openfga/concept.md)
 
 ---
 
