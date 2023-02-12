@@ -1,0 +1,7 @@
+datastore:
+  engine: postgres
+  uri: postgres://postgres:password@localhost:5432/postgres?sslmode=disable
+authn:
+  method: preshared
+  preshared:
+    keys: ["key1", "key2"]
