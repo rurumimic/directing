@@ -4,7 +4,7 @@
 
 ## Configuring The Server
 
-sample: [config.yaml](src/server/config.yaml)
+sample: [config.yaml](config.yaml)
 
 ```bash
 vi /etc/openfga/config.yaml
@@ -37,7 +37,7 @@ docker run --rm --name openfga -p 8080:8080 -p 8081:8081 -p 3000:3000 openfga/op
 
 ### with Docker Compose
 
-sample: [docker-compose.yml](src/docker-compose.yml)
+sample: [docker-compose.yml](docker-compose.yml)
 
 ```bash
 docker compose up -d
