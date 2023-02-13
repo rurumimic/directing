@@ -11,4 +11,6 @@
 - [Concept](concept.md)
 - Start
   - [OpenFGA Server](server/README.md)
-  - [SDK Client](client/README.md)
+  - SDK Client
+    - [node](client/node/README.md)
+    - [go](client/go/README.md)

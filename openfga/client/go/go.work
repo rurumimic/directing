@@ -1,0 +1,8 @@
+go 1.20
+
+use (
+	./auth_model
+	./check
+	./create_store
+	./update_relationship
+)

@@ -49,6 +49,8 @@ console.log("storeId", storeId);
 ```
 
 ```bash
+node create_store.js
+
 storeId 01GS2XYH0K1DPPGB1J9VRMGVCM
 ```
 
@@ -81,9 +83,7 @@ invoke the write authorization models API: [auth_model.js](auth_model.js)
 
 ```bash
 node auth_model.js
-```
 
-```bash
 authorization_model_id 01GS2Y8QT2M6PM445QJMS8EBJF
 ```
 
