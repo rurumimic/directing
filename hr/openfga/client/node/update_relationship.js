@@ -13,5 +13,5 @@ await fgaClient.write({
   writes: {
     tuple_keys: [{ user: "user:anne", relation: "reader", object: "document:Z" }],
   },
-  authorization_model_id: "01GS2Y8QT2M6PM445QJMS8EBJF",
+  authorization_model_id: "01GSAH1WFQAWRXYP2PR9YHJ3K0",
 });
