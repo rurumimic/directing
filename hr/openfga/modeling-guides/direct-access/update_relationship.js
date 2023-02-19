@@ -11,7 +11,7 @@ const fgaClient = new OpenFgaApi({
 
 await fgaClient.write({
   writes: {
-    tuple_keys: [{ user: "user:anne", relation: "reader", object: "document:Z" }],
+    tuple_keys: [{ user: "user:bob", relation: "writer", object: "document:meeting_notes.doc" }],
   },
   authorization_model_id: "01GSMNE0TJAGF9GQYV91W6B9G5",
 });

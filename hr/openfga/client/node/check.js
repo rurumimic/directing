@@ -10,7 +10,7 @@ const fgaClient = new OpenFgaApi({
 });
 
 const { allowed } = await fgaClient.check({
-  authorization_model_id: "01GSAH1WFQAWRXYP2PR9YHJ3K0",
+  authorization_model_id: "01GSMNE0TJAGF9GQYV91W6B9G5",
   tuple_key: {
     user: "user:anne",
     relation: "reader",
