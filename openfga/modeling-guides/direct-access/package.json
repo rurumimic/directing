@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "name": "client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@openfga/sdk": "^0.2.2",
+    "dotenv": "^16.0.3"
+  }
+}

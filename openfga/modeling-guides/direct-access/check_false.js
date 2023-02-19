@@ -9,9 +9,13 @@ const fgaClient = new OpenFgaApi({
   storeId: process.env.FGA_STORE_ID,
 });
 
-await fgaClient.write({
-  writes: {
-    tuple_keys: [{ user: "user:anne", relation: "reader", object: "document:Z" }],
-  },
+const { allowed } = await fgaClient.check({
   authorization_model_id: "01GSMNE0TJAGF9GQYV91W6B9G5",
+  tuple_key: {
+    user: "user:bob",
+    relation: "reader",
+    object: "document:meeting_notes.doc",
+  },
 });
+
+console.log("allowed", allowed);
