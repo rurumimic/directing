@@ -1,8 +1,8 @@
 # git subtree
 
-## how to add a subtree
+## How to add a subtree
 
-### add a remote
+### Add a remote
 
 ```bash
 git remote add hr https://github.com/rurumimic/human-resource.git
@@ -31,7 +31,7 @@ cat .git/config
 
 </details>
 
-### add a subtree
+### Add a subtree
 
 ```bash
 git subtree add --prefix=hr hr master
@@ -100,17 +100,17 @@ git commit -am "add a new subtree"
 
 </details>
 
-## how to update repos
+## How to update repos
 
 in project root directory:
 
-### push a subtree directory
+### Push a subtree directory
 
 ```bash
 git subtree push --prefix=hr hr master
 ```
 
-### pull a subtree directory
+### Pull a subtree directory
 
 ```bash
 git subtree pull --prefix=hr hr master --squash
@@ -118,7 +118,8 @@ git subtree pull --prefix=hr hr master --squash
 
 ---
 
-## references
+## References
 
 - [Git subtree: the alternative to Git submodule](https://www.atlassian.com/git/tutorials/git-subtree)
 - [Git subtree를 활용한 코드 공유](https://blog.rhostem.com/posts/2020-01-03-code-sharing-with-git-subtree)
+
