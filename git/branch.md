@@ -137,6 +137,10 @@ Successfully rebased and updated refs/heads/master.
 * c0
 ```
 
+---
+
+## Next Step
+
 ### HEAD
 
 ```bash
@@ -155,6 +159,127 @@ git checkout b3e0450
 * b3e0450 c3 (HEAD, newImage)
 | * c2 (master)
 |/
+* c1
+* c0
+```
+
+### Relative Ref
+
+- `^` Caret: moving upwards one commit
+- `~<num>` Tilde: moving upwards a number of times
+
+```bash
+* c4 (newImage)
+* c3
+| * c2 (HEAD -> master)
+|/
+* c1
+* c0
+```
+
+```bash
+git checkout newImage^
+```
+
+```bash
+* c4 (newImage)
+* c3 (HEAD)
+| * c2 (master)
+|/
+* c1
+* c0
+```
+
+```bash
+git checkout HEAD~2
+```
+
+```bash
+* c4 (newImage)
+* c3
+| * c2 (master)
+|/
+* c1
+* c0 (HEAD)
+```
+
+### Branch Forcing
+
+```bash
+*  c4 (HEAD -> newImage)
+* c3
+| * c2 (master)
+|/
+* c1
+* c0
+```
+
+```bash
+git branch -f main HEAD~3
+```
+
+```bash
+* ac54fcd c4 (HEAD -> newImage)
+* c3
+* c1
+* c0 (master)
+```
+
+```bash
+git checkout HEAD^^
+
+* ac54fcd c4 (newImage)
+* c3
+* c1 (HEAD)
+* c0 (master)
+```
+
+```bash
+git branch -f newImage Head~1
+
+* c1 (HEAD)
+* c0 (newImage, master)
+```
+
+```bash
+git branch -f master ac54fcd
+
+* ac54fcd c4 (master)
+* c3
+* c1 (HEAD)
+* c0 (newImage)
+```
+
+### Reversing Changes
+
+- git reset: rewriting history for local branches
+- git revert: reverse changes and share changes with others
+
+```bash
+* c2 (HEAD -> master)
+* c1
+* c0
+```
+
+```bash
+git reset HEAD~1
+```
+
+```bash
+* c1 (HEAD -> master)
+* c0
+```
+
+```bash
+git revert HEAD
+
+# Revert "c1"
+#
+# This reverts commit 716b4e
+```
+
+```bash
+* Revert "c1" (HEAD -> master)
 * c1
 * c0
 ```
