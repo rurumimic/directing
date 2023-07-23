@@ -1,6 +1,6 @@
 # git branch
 
-- [Learn Git Branching](https://learngitbranching.js.org/)
+- [Learn Git Branching](https://learngitbranching.js.org/?locale=en_US), [Git 브랜치 배우기](https://learngitbranching.js.org/?locale=ko)
 - [Oh-My-Zsh Git](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git)
 
 ## Init
@@ -450,6 +450,86 @@ git cherry-pick --continue
 | * 2feccdf - c3 (bugFix)
 | * c2
 |/
+* c1
+* c0
+```
+
+### Interactive Rebase
+
+```bash
+* c5 (HEAD -> master)
+* c4
+* c3
+* c2
+* c1 # HEAD~4
+* c0
+```
+
+```bash
+git rebase -i HEAD~4
+```
+
+interactive reabase:
+
+```bash
+pick c2
+s    c5 # squash
+f    c3 # fixup
+r    c4 # reword
+```
+
+first: pick + squash + fixup
+
+```bash
+# This is a combination of 3 commits.
+# This is the 1st commit message:
+
+c2
+
+# This is the commit message #2:
+
+c5
+
+# The commit message #3 will be skipped:
+
+# c3
+```
+
+first commit message:
+
+```bash
+c2 + c5 (+ c3)
+```
+
+second commit message:
+
+```bash
+c4 -> new c4
+```
+
+success:
+
+```bash
+git rebase -i HEAD~4
+
+[detached HEAD 5625f2a] c2 + c5 (+ c3)
+ Date: Sun Jul 23 21:56:22 2023 +0900
+ 3 files changed, 3 insertions(+)
+ create mode 100644 c2
+ create mode 100644 c3
+ create mode 100644 c5
+[detached HEAD bef5a09] c4 -> new c4
+ Date: Sun Jul 23 21:56:55 2023 +0900
+ 1 file changed, 1 insertion(+)
+ create mode 100644 c4
+Successfully rebased and updated refs/heads/master.
+```
+
+logs:
+
+```bash
+* c4 -> new c4 (HEAD -> master)
+* c2 + c5 (+ c3)
 * c1
 * c0
 ```
