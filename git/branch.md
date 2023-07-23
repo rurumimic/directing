@@ -139,7 +139,7 @@ Successfully rebased and updated refs/heads/master.
 
 ---
 
-## Next Step
+## Ramping Up
 
 ### HEAD
 
@@ -283,6 +283,10 @@ git revert HEAD
 * c1
 * c0
 ```
+
+---
+
+## Moving Around
 
 ### Cherry-pick
 
@@ -530,6 +534,54 @@ logs:
 ```bash
 * c4 -> new c4 (HEAD -> master)
 * c2 + c5 (+ c3)
+* c1
+* c0
+```
+
+---
+
+## Mixed Bag
+
+### Grabbing just 1 commit
+
+```bash
+* c4 (HEAD -> bugFix)
+* c3 (printf)
+* c2 (debug)
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase -i master
+
+d    c2 # drop
+d    c3 # drop
+pick c4
+
+Successfully rebased and updated refs/heads/bugFix.
+```
+
+```bash
+* c4 (HEAD -> bugFix)
+| * c3 (printf)
+| * c2 (debug)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase bugFix master
+
+Successfully rebased and updated refs/heads/master.
+```
+
+```bash
+* c4 (HEAD -> master, bugFix)
+| * c3 (printf)
+| * c2 (debug)
+|/
 * c1
 * c0
 ```
