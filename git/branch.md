@@ -572,6 +572,7 @@ Successfully rebased and updated refs/heads/bugFix.
 ```
 
 ```bash
+# git rebase <basebranch> <topicbranch>
 git rebase bugFix master
 
 Successfully rebased and updated refs/heads/master.
@@ -583,6 +584,174 @@ Successfully rebased and updated refs/heads/master.
 | * c2 (debug)
 |/
 * c1
+* c0
+```
+
+### Juggling commits
+
+```bash
+* c3 (HEAD -> caption)
+* c2 (newImage)
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase -i master
+
+# pick c3
+# pick c2
+
+* c2 (HEAD -> caption)
+* c3
+| * c2 (newImage)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git commit --amend
+
+* c2 -> new c2 (HEAD -> caption)
+* c3
+| * c2 (newImage)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase -i master
+
+# pick c2 -> new c2
+# pick c3
+
+* c3 (HEAD -> caption)
+* c2 -> new c2
+| * c2 (newImage)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase caption master # = git checkout master && git rebase caption
+```
+
+```bash
+* c3 (HEAD -> master, caption)
+* c2 -> new c2
+| * c2 (newImage)
+|/
+* c1
+* c0
+```
+
+### Juggling commits 2
+
+```bash
+* a980231 c3 (HEAD -> caption)
+* 245ea0b c2 (newImage)
+* c1 (master)
+* c0
+```
+
+```bash
+git checkout main
+git cherry-pick 245ea0b
+git commit --amend -m "c2 -> new c2"
+git cherry-pick a980231
+```
+
+```bash
+* c3 (HEAD -> master)
+* c2 -> new c2
+| * c3 (caption)
+| * c2 (newImage)
+|/
+* c1
+* c0
+```
+
+### Git Tags
+
+```bash
+git tag v1 [HEAD]
+git tag v1 <ref>
+
+git checkout v1
+```
+
+### Git Describe
+
+```bash
+git describe <ref>
+git describe <ref> --tags
+
+<tag>_<numCommits>_g<hash>
+```
+
+```bash
+git describe master --tags
+
+v1-2-g414d42d
+```
+
+---
+
+## Advanced
+
+### Multiple Parents
+
+```bash
+* c7 (HEAD -> master)
+* c6
+|\
+| * c5
+| * c4
+| * c3
+* | c2
+* | c1
+|/
+* c0
+```
+
+```bash
+git checkout HEAD~^2~2
+
+# git checkout HEAD~
+# git checkout HEAD^2
+# git checkout HEAD~2
+```
+
+```bash
+* c7 (master)
+* c6
+|\
+| * c5
+| * c4
+| * c3 (HEAD)
+* | c2
+* | c1
+|/
+* c0
+```
+
+```bash
+git branch bugWork master^^2^
+```
+
+```bash
+* c7 (master)
+* c6
+|\
+| * c5
+| * c4 (bugFix)
+| * c3 (HEAD)
+* | c2
+* | c1
+|/
 * c0
 ```
 
