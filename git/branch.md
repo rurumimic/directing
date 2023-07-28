@@ -755,3 +755,242 @@ git branch bugWork master^^2^
 * c0
 ```
 
+---
+
+## Remote
+
+### Create a bare repository
+
+make some commits:
+
+```bash
+mkdir repo && cd repo && git init
+echo c0 > c0 && git add c0 && git commit -m c0
+echo c1 > c1 && git add c1 && git commit -m c1
+```
+
+clone a bare repo:
+
+```bash
+cd ..
+git clone --bare repo repo.git
+```
+
+remove non-repo:
+
+```bash
+rm -rf repo
+```
+
+### Clone
+
+```bash
+git clone repo.git repo
+cd repo
+```
+
+```bash
+git log
+
+* c1 (HEAD -> master, origin/master, origin/HEAD)
+* c0
+```
+
+```bash
+git remote -v
+
+origin ./repo.git (fetch)
+origin ./repo.git (push)
+```
+
+```bash
+git branch -a
+
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
+
+### Remote Branches
+
+```bash
+echo c2 > c2 && git add c2 && git commit -m c2
+git checkout origin/master
+echo c3 > c3 && git add c3 && git commit -m c3
+```
+
+```bash
+git branch -a
+
+* (detached HEAD)
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
+
+git log of `repo`:
+
+```bash
+* c3 (HEAD)
+| * c2 (master)
+|/  
+* c1 (origin/master, origin/HEAD)
+* c0 
+```
+
+git log of `repo.git`:
+
+```bash
+* c1 (HEAD -> master)
+* c0 
+```
+
+### Git Fetch
+
+1. Downloads the commits that the remote has but are missing from the local repository
+2. Updates where remote branches point (for instance, origin/master)
+3. Does not change anything about the local state
+4. It will not update master branch or change anything about how the file system looks right now
+
+git log of `repo.git`: 
+
+```bash
+* c3 (bugFix)
+| * c2 (HEAD -> master)
+|/  
+* c1
+* c0
+```
+
+git fetch in `repo`:
+
+```bash
+git fetch
+
+* c3 (origin/bugFix)
+| * c2 (origin/master, origin/HEAD)
+|/  
+* c1 (HEAD -> master)
+* c0
+```
+
+### Git Pull
+
+Update code to fetch data:
+
+```bash
+git cherry-pick origin/master
+git rebase origin/master
+git merge origin/master # == git fetch; git merge origin/master
+```
+
+```bash
+* c3 (origin/bugFix)
+| * c2 (HEAD -> master, origin/master, origin/HEAD)
+|/  
+* c1
+* c0
+```
+
+### Git Push
+
+```bash
+git push
+```
+
+### Diverged History
+
+`repo.git`:
+
+```bash
+* c3 (HEAD -> master)
+* c2
+* c1
+* c0
+```
+
+`repo`:
+
+```bash
+* c4 (HEAD -> master)
+* c2 (origin/master, origin/HEAD)
+* c1 
+* c0 
+```
+
+try push:
+
+```bash
+git push
+
+ ! [rejected]        master -> master (fetch first)
+```
+
+#### Rebase
+
+```bash
+git fetch
+git rebase origin/master
+git push
+```
+
+```bash
+* c4 (HEAD -> master, origin/master, origin/HEAD)
+* c3
+* c2
+* c1
+* c0
+```
+
+#### Merge
+
+```bash
+git fetch
+git merge origin/master
+git push
+```
+
+```bash
+* Merge remote-tracking branch 'origin/master' (HEAD -> master, origin/master, origin/HEAD)
+|\  
+| * c3 
+* | c4 
+|/  
+* c2 
+* c1 
+* c0 
+```
+
+#### Git Pull Rebase
+
+```bash
+git pull --rebase # git fetch && git rebase origin/master
+git push
+```
+
+### Locked Master
+
+```bash
+* C2 (HEAD, master)
+* C1 (origin/master)
+* C0
+```
+
+try push to locked master:
+
+```bash
+! [remote rejected] master -> master (TF402455: Pushes to this branch are not permitted; you must use a pull request to update this branch.)
+```
+
+```bash
+git reset --hard origin/master
+git checkout -b feature C2
+git push origin feature
+```
+
+```bash
+* C2 (HEAD, feature, origin/feature)
+* C1 (master, origin/master)
+* C0
+```
+
