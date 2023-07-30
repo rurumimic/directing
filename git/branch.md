@@ -1140,11 +1140,167 @@ git push
 
 ### Remote Tracking
 
+When a repository is cloned with git, this property is automatically set.
+
+`local branch "master" set to track remote branch "origin/master"`
+
+#### Refer to a remote branch
+
+```bash
+git checkout -b newBranch origin/master
+```
+
+Creates a new branch named `newBranch` and sets it to track `origin/master`.
+
+####
+
+```bash
+git branch -u origin/master foo
+git branch -u origin/master # current branch: foo
+```
+
+#### Tracking and Rebase
+
+```bash
+# * c2 (remote -> origin/master)
+* c1 (HEAD -> master, origin/master, origin/HEAD)
+* c0
+```
+
+```bash
+git checkout -b side origin/master
+
+# * c2 (remote -> origin/master)
+* c1 (HEAD -> side, origin/master, origin/HEAD, master)
+* c0
+```
+
+```bash
+echo c3 > c3 && git add c3 && git commit -m c3
+
+* c3 (HEAD -> side)
+# * c2 (remote -> origin/master)
+* c1 (origin/master, origin/HEAD, master)
+* c0
+```
+
+```bash
+git pull --rebase
+
+* c3 (HEAD -> side)
+* c2 (origin/master, origin/HEAD)
+* c1 (master)
+* c0
+```
+
+```bash
+git push origin HEAD:master
+
+* c3 (HEAD -> side, origin/master, origin/HEAD)
+* c2
+* c1 (master)
+* c0
+```
+
 ### Git push arguments
+
+```bash
+git push <remote> <place>
+```
+
+```bash
+git push origin master
+```
+
+1. Go to `master` branch
+2. Copy all commits to `origin/master` branch
+3. Available in all branches
+
+
+#### Colon Refspec
+
+```bash
+git push origin <source>:<destination>
+```
+
+examples:
+
+```bash
+git push origin foo^:master
+git push origin master:newBranch $ create a new branch on a remote
+```
 
 ### Fetch arguments
 
+```bash
+git fetch <remote> <place>
+git fetch <remote> <remote-source>:<local-destination>
+```
+
 ### Source of nothing
 
+```bash
+git push origin :side # remove a remote branch `side`
+git fetch origin :bugFix # new local branch `bugFix`
+```
+
 ### Pull arguments
+
+```bash
+git pull origin foo
+git fetch origin foo; git merge origin/foo;
+```
+
+```bash
+git pull origin bar~1:bugFix
+git fetch origin bar~1; git merge bugFix;
+```
+
+#### example
+
+Remote:
+
+```bash
+* c3 (origin/bar)
+| * c2 (origin/master)
+|/
+* c1
+* c0
+```
+
+Local:
+
+```bash
+* c4 (HEAD -> master)
+* c1 (origin/master, origin/bar)
+* c0
+```
+
+```bash
+git pull --no-rebase origin bar:foo
+
+*  Merge branch 'bar' (HEAD -> master)
+|\
+| * c3 (origin/bar, foo)
+* | c4
+|/
+* c1 (origin/master)
+* c0
+```
+
+```bash
+git pull --no-rebase origin master:side
+
+*   Merge branch 'master' (HEAD -> master)
+|\
+| * c2 (origin/master, side)
+* |   Merge branch 'bar'
+|\ \
+| * | c3 (origin/bar, foo)
+| |/
+* / c4
+|/
+* c1
+* c0
+```
 
