@@ -1091,3 +1091,50 @@ git push
 * c0
 ```
 
+### Merging with remotes
+
+```bash
+* c2 (side1)
+| * c4 (side2)
+| * c3
+|/
+| * c7 (HEAD -> side3)
+| * c6
+| * c5
+|/
+| * c8 (origin/master, origin/HEAD)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git checkout master
+git pull
+git merge side1
+git merge side2
+git merge side3
+git push
+```
+
+```bash
+*  Merge branch 'side3' (HEAD -> master, origin/master, origin/HEAD)
+|\
+| * c7 (side3)
+| * c6
+| * c5
+* |  Merge branch 'side2'
+|\ \
+| * | c4 (side2)
+| * | c3
+| |/
+* |   Merge branch 'side1'
+|\ \
+| * | c2 (side1)
+| |/
+* / c8
+|/
+* c1
+* c0
+```
+
