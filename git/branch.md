@@ -994,3 +994,100 @@ git push origin feature
 * C0
 ```
 
+---
+
+## Advanced Git Remotes
+
+### Push Master
+
+Rebase feature branches
+
+```bash
+git fetch
+
+* c8 (origin/master, origin/HEAD)
+* c7 (HEAD -> side3)
+* c6
+* c5
+| * c4 (side2)
+| * c3
+|/
+| * c2 (side1)
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase origin/master side1
+
+* c2 (HEAD -> side1)
+* c8 (origin/master, origin/HEAD)
+| * c7 (side3)
+| * c6
+| * c5
+|/
+| * c4 (side2)
+| * c3
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase side1 side2
+
+* c4 (HEAD -> side2)
+* c3
+* c2 (side1)
+* c8 (origin/master, origin/HEAD)
+| * c7 (side3)
+| * c6
+| * c5
+|/
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase side2 side3
+
+* c7 (HEAD -> side3)
+* c6
+* c5
+* c4 (side2)
+* c3
+* c2 (side1)
+* c8 (origin/master, origin/HEAD)
+* c1 (master)
+* c0
+```
+
+```bash
+git rebase side3 master
+
+* c7 (HEAD -> master, side3)
+* c6
+* c5
+* c4 (side2)
+* c3
+* c2 (side1)
+* c8 (origin/master, origin/HEAD)
+* c1
+* c0
+```
+
+```bash
+git push
+
+* c7 (HEAD -> master, origin/master, origin/HEAD, side3)
+* c6
+* c5
+* c4 (side2)
+* c3
+* c2 (side1)
+* c8
+* c1
+* c0
+```
+
