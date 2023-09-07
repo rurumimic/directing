@@ -150,5 +150,5 @@ git push -u origin master
 
 ### Commit Diff
 
-![](gitweb_commitdiff.png)
+![](images/gitweb_commitdiff.png)
 
