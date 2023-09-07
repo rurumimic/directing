@@ -3,6 +3,8 @@
 - book: [Git on the Server](https://git-scm.com/book/en/v2/Git-on-the-Server-GitWeb)
 - arch wiki: [Gitweb](https://wiki.archlinux.org/title/gitweb)
 
+![](images/gitweb_commitdiff.png)
+
 ## Install Manually
 
 Clone the Git repo:
