@@ -1152,8 +1152,6 @@ git checkout -b newBranch origin/master
 
 Creates a new branch named `newBranch` and sets it to track `origin/master`.
 
-####
-
 ```bash
 git branch -u origin/master foo
 git branch -u origin/master # current branch: foo
@@ -1304,3 +1302,9 @@ git pull --no-rebase origin master:side
 * c0
 ```
 
+### Remove Remote Branch
+
+```bash
+git branch -d <branch>
+git push origin -d <branch>
+```
