@@ -1308,3 +1308,15 @@ git pull --no-rebase origin master:side
 git branch -d <branch>
 git push origin -d <branch>
 ```
+
+---
+
+## Change Author
+
+```bash
+git rebase -i HEAD^
+git commit --amend --author="name <email>"
+git rebase --continue
+git push -f
+```
+
