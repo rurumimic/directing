@@ -6,3 +6,10 @@
 - 🐙 [github](github.md)
 - 🩹 [patch](patch.md)
 
+---
+
+## Useful commands
+
+```bash
+git rev-parse --show-toplevel
+```
