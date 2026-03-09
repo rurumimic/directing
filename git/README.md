@@ -1,6 +1,7 @@
 # git
 
 - 🌿 [branch](branch.md)
+- 🌵 [worktree](worktree.md)
 - 🌳 [subtree](subtree.md)
 - 🎨 [web](web.md)
 - 🐙 [github](github.md)
